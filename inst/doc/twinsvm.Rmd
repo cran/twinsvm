@@ -1,0 +1,123 @@
+---
+title: "Getting Started with twinsvm"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting Started with twinsvm}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 6,
+  fig.height = 4
+)
+```
+
+`twinsvm` fits twin support vector machines and provides a standard C-SVC SVM baseline for comparison. Binary fits use two-class factors: level 1 is class B, level 2 is class A. Multiclass fits use one-vs-one majority voting, with ties resolved by the first factor level.
+
+## Generate data and fit a twin SVM
+
+```{r}
+library(twinsvm)
+
+set.seed(1)
+dat <- gen_moons(100, noise = 0.12)
+fit <- tsvm(dat$x, dat$y, kernel = "rbf", gamma = 2, c1 = 0.1, c2 = 0.1)
+head(predict(fit, dat$x))
+mean(predict(fit, dat$x) == dat$y)
+```
+
+## Plot the boundary
+
+```{r}
+plot(fit)
+```
+
+For a linear twin SVM, the two fitted planes are drawn as dashed lines.
+
+```{r}
+linear_fit <- tsvm(dat$x, dat$y, kernel = "linear")
+plot(linear_fit)
+```
+
+## Cross-validation
+
+```{r}
+cv <- cv_tsvm(
+  dat$x,
+  dat$y,
+  c1_grid = c(0.1, 1),
+  c2_grid = c(0.1, 1),
+  gamma_grid = c(1, 2),
+  kernel = "rbf",
+  k = 3
+)
+cv$best_params
+plot(cv)
+```
+
+## Multiclass
+
+```{r}
+set.seed(4)
+x3 <- rbind(
+  matrix(rnorm(30, -2, 0.25), ncol = 2),
+  cbind(rnorm(15, 2, 0.25), rnorm(15, -2, 0.25)),
+  matrix(rnorm(30, 2, 0.25), ncol = 2)
+)
+y3 <- factor(rep(c("alpha", "beta", "gamma"), each = 15))
+
+multi <- tsvm(x3, y3, kernel = "linear")
+head(predict(multi, x3))
+head(predict(multi, x3, type = "votes"))
+confusion(multi, x3, y3)
+```
+
+## Compare with standard SVM
+
+```{r}
+timing <- data.frame(
+  n = c(40, 80, 120),
+  tsvm_seconds = NA_real_,
+  svms_seconds = NA_real_
+)
+
+for (i in seq_len(nrow(timing))) {
+  set.seed(i)
+  d <- gen_moons(timing$n[i], noise = 0.12)
+  timing$tsvm_seconds[i] <- system.time(tsvm(d$x, d$y, kernel = "rbf", gamma = 2))[["elapsed"]]
+  timing$svms_seconds[i] <- system.time(svms(d$x, d$y, kernel = "rbf", gamma = 2))[["elapsed"]]
+}
+timing
+```
+
+The timing table is generated on the machine running this vignette. Kernel twin-SVM forms invert an `(n + 1)` matrix, so they are meant for small to moderate data.
+
+## Visualization
+
+```{r}
+circles <- gen_circles(100, noise = 0.04)
+lift_plot(circles$x, circles$y, gamma = 1)
+```
+
+The same data can be shown through the three fitted classifiers in one row.
+
+```{r}
+set.seed(2)
+small <- gen_moons(60, noise = 0.1)
+compare_methods(small$x, small$y, gamma = 1, c1 = 0.2, c2 = 0.2, cost = 1)
+```
+
+`morph_boundary()` returns a `gganimate` object. Rendering is left to the user so package examples stay fast.
+
+```{r}
+anim <- morph_boundary(dat$x, dat$y, param = "gamma", range = c(0.5, 2), kernel = "rbf", n = 5)
+class(anim)
+```
+
+## Validation
+
+The standard SVM baseline is tested against `e1071`, which is backed by LIBSVM. There is no existing R twin-SVM package to match against, so twin-SVM tests validate plane-distance behavior, nonlinear kernel improvement, and agreement between the least-squares and original QP formulations. The algorithms follow Jayadeva, Khemchandani, and Chandra (2007) and Kumar and Gopal (2009).
