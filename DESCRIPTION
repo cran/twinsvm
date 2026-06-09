@@ -1,6 +1,6 @@
 Package: twinsvm
 Title: Twin Support Vector Machines
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: 
     person("Shamika", "Tissera", email = "nimeshshamika@gmail.com", role = c("aut", "cre"))
 Author: Shamika Tissera [aut, cre]
@@ -20,6 +20,6 @@ Config/testthat/edition: 3
 VignetteBuilder: knitr
 Config/roxygen2/version: 8.0.0
 NeedsCompilation: yes
-Packaged: 2026-06-03 07:12:12 UTC; Shamika
+Packaged: 2026-06-09 12:39:13 UTC; Shamika
 Repository: CRAN
-Date/Publication: 2026-06-08 19:30:02 UTC
+Date/Publication: 2026-06-09 21:40:02 UTC

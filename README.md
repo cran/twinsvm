@@ -5,7 +5,7 @@
 ## Install locally
 
 ```r
-install.packages("twinsvm_0.0.1.tar.gz", repos = NULL, type = "source")
+install.packages("twinsvm_0.0.2.tar.gz", repos = NULL, type = "source")
 library(twinsvm)
 ```
 

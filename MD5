@@ -1,5 +1,6 @@
-a19de50c94a80266ac4cddca60fbee47 *DESCRIPTION
+14994104afe93d74d700657ee385f14d *DESCRIPTION
 7842bf5288908885e1da8d9142bdfd3f *NAMESPACE
+695388ed81bf9539445b961e1c353c64 *NEWS.md
 44d923fce9732089f58c5ccdf1c7df2b *R/RcppExports.R
 1011111e748d8e6e9348ace758d65a06 *R/compare.R
 a11662665b207de90b7d8431f46b6539 *R/confusion.R
@@ -16,12 +17,12 @@ e44409857d86d150de0ea104772efcb8 *R/predict.R
 7614357bf32257b3fae9b931d83b49b3 *R/tsvm.R
 eefc00989ee95355553820129c24f0ef *R/twinsvm-package.R
 bbedb218ee5f905cf1f9385e3e623f91 *R/visualization_helpers.R
-ecdf7294260a834785aa7aa85167ccf7 *README.md
+eb5da0e2b3406deebbb09d0b15347a0c *README.md
 422e054ace8ae8568c62ba4f37c97da8 *build/vignette.rds
 366169a153e73e214a6ae84fcce81721 *data/twomoons.rda
 5835587d22160f9dd40a4c59b912a97e *inst/doc/twinsvm.R
 f56cd0a1dfeddafc5b16d450e359ba25 *inst/doc/twinsvm.Rmd
-a08724979b5061efb14786b26de7c5dc *inst/doc/twinsvm.html
+b2ccf1076bbccdf69133e077041acbe6 *inst/doc/twinsvm.html
 aa1187cd5851ac199b09c71ccfd96dbf *man/coef.tsvm.Rd
 8698076d15df1a1e38500d9090892f2e *man/compare_methods.Rd
 68414f2993adfbe16c702270365bcf3e *man/confusion.Rd
@@ -54,7 +55,7 @@ d33cdc2261e032af66db057d9ae990ae *tests/testthat.R
 790c7abc588324aca83389aec7737d1f *tests/testthat/ref-binary-svms.rds
 e93772b30f28704b0c6fabcb44917ab3 *tests/testthat/ref-binary-tsvm.rds
 eddd253935f15657e3bbb8e475e35b7f *tests/testthat/test-baselines.R
-a22739530a84244c4b6c13943f172586 *tests/testthat/test-multiclass.R
+3d6e03ad05d30f9d7d4dca3f1bfa8820 *tests/testthat/test-multiclass.R
 f27afcf04b0998101125fb663c849c3c *tests/testthat/test-phase0.R
 cb82aa1adf758034a29f4b11d7b05e38 *tests/testthat/test-visualizations.R
 f56cd0a1dfeddafc5b16d450e359ba25 *vignettes/twinsvm.Rmd

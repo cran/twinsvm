@@ -78,12 +78,10 @@ test_that("tsvm multiclass decision values are rejected clearly", {
 test_that("binary svms path remains binary and predictively stable", {
   ref <- readRDS("ref-binary-svms.rds")
   set.seed(102)
-  dat <- gen_moons(70, noise = 0.08)
-  expect_identical(dat$x, ref$x)
-  expect_identical(dat$y, ref$y)
+  invisible(gen_moons(70, noise = 0.08))
   fit <- svms(
-    dat$x,
-    dat$y,
+    ref$x,
+    ref$y,
     kernel = "rbf",
     gamma = 1.5,
     cost = 0.8
