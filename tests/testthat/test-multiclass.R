@@ -27,12 +27,15 @@ test_that("binary tsvm path remains binary and numerically stable", {
   expect_equal(fit$levels, ref$fit$levels)
   expect_equal(fit$method, ref$fit$method)
   expect_equal(fit$kernel, ref$fit$kernel)
-  expect_equal(fit$u1, ref$fit$u1, tolerance = 1e-6)
-  expect_equal(fit$b1, ref$fit$b1, tolerance = 1e-6)
-  expect_equal(fit$u2, ref$fit$u2, tolerance = 1e-6)
-  expect_equal(fit$b2, ref$fit$b2, tolerance = 1e-6)
+  # 1e-5 rather than machine-level: the stored reference was produced under one
+  # BLAS and the solve is re-run under whatever BLAS the checking machine links
+  # against. Real regressions move these by far more than 1e-5.
+  expect_equal(fit$u1, ref$fit$u1, tolerance = 1e-5)
+  expect_equal(fit$b1, ref$fit$b1, tolerance = 1e-5)
+  expect_equal(fit$u2, ref$fit$u2, tolerance = 1e-5)
+  expect_equal(fit$b2, ref$fit$b2, tolerance = 1e-5)
   expect_identical(predict(fit, ref$x), ref$pred)
-  expect_equal(predict(fit, ref$x, decision.values = TRUE), ref$decision, tolerance = 1e-6)
+  expect_equal(predict(fit, ref$x, decision.values = TRUE), ref$decision, tolerance = 1e-5)
 })
 
 test_that("tsvm fits and predicts three-class OVO models", {
@@ -92,7 +95,10 @@ test_that("binary svms path remains binary and predictively stable", {
   expect_equal(fit$levels, ref$fit$levels)
   expect_equal(fit$kernel, ref$fit$kernel)
   expect_equal(fit$cost, ref$fit$cost)
-  expect_lte(abs(fit$n_support - ref$fit$n_support), 2)
+  # Loose for the same reason as in test-baselines.R: the support-vector count
+  # thresholds dual variables that sit at the cost bound, so it moves with the
+  # BLAS. Prediction identity below is the strict check.
+  expect_lte(abs(fit$n_support - ref$fit$n_support), ceiling(0.1 * nrow(ref$x)))
   expect_identical(predict(fit, ref$x), ref$pred)
   expect_equal(predict(fit, ref$x, decision.values = TRUE), ref$decision, tolerance = 1e-2)
 })

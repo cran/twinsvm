@@ -94,6 +94,7 @@ test_that("visualization functions return plot objects", {
   expect_s3_class(plot(fit_svm), "ggplot")
   expect_s3_class(plot(fit_tsvm), "ggplot")
   expect_s3_class(kernel_lift(dat$x, dat$y), "ggplot")
+  skip_if_not_installed("gganimate")
   old_wd <- setwd(tempdir())
   on.exit({
     setwd(old_wd)

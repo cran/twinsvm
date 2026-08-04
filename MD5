@@ -1,6 +1,6 @@
-14994104afe93d74d700657ee385f14d *DESCRIPTION
-7842bf5288908885e1da8d9142bdfd3f *NAMESPACE
-695388ed81bf9539445b961e1c353c64 *NEWS.md
+0269d959e03ca81696b4c0139fc719bb *DESCRIPTION
+6b0500c6aa00685fc3f8bc70e1cbc952 *NAMESPACE
+672a0d6b74b9c4053267ad40a9e42e53 *NEWS.md
 44d923fce9732089f58c5ccdf1c7df2b *R/RcppExports.R
 1011111e748d8e6e9348ace758d65a06 *R/compare.R
 a11662665b207de90b7d8431f46b6539 *R/confusion.R
@@ -13,6 +13,7 @@ a8400602763c49b7ad39a67a9d859a28 *R/morph.R
 63e6b7a8e274ecc8a55c27af3160e231 *R/ovo.R
 c83bd90e1ea3ad70a823caf66162f0da *R/plot.R
 e44409857d86d150de0ea104772efcb8 *R/predict.R
+3dad57d62b04c89da8572ade22d92a76 *R/resample.R
 0a93e6505b7696df6c81ef23bf36cf8b *R/svms.R
 7614357bf32257b3fae9b931d83b49b3 *R/tsvm.R
 eefc00989ee95355553820129c24f0ef *R/twinsvm-package.R
@@ -34,6 +35,7 @@ aa1187cd5851ac199b09c71ccfd96dbf *man/coef.tsvm.Rd
 47e23d59ba98e6cb20673b1122ee69b1 *man/lift_plotly.Rd
 29e456244d2bdfebff54acb7c2f57302 *man/morph_boundary.Rd
 5a2efa08752c66b8aa166ce94eb3f8a5 *man/plot.cv_tsvm.Rd
+a342eaf0019545a519d1f18ee8027033 *man/plot.resample_accuracy.Rd
 75c137f4b83632f95f379adcb679dbcf *man/plot.svms.Rd
 77aa3bbaa9a6eca77e6519347245da10 *man/plot.tsvm.Rd
 a35e179f7f91f6ca726f045f0501af6b *man/predict.svms.Rd
@@ -41,6 +43,7 @@ a7f07d879f2fedded453f463544cd0cd *man/predict.svms_multiclass.Rd
 0307771e1f4ab9c9cd218c518f9a12d9 *man/predict.tsvm_multiclass.Rd
 f1cd5618ac5db6f34155458c8a28dc6e *man/print.svms_multiclass.Rd
 df671385da729a0f6cdc32784df8292a *man/print.tsvm_multiclass.Rd
+4b6259eaeebb53e9b04e0f809af08ff7 *man/resample_accuracy.Rd
 66615921ee501e0d292d4213e4104e10 *man/svms.Rd
 9e4966c2b6402a941ef12882e415a1b4 *man/tsvm.Rd
 7a13784fbea65bf75ed4409a11911c28 *man/twinsvm-package.Rd
@@ -54,8 +57,9 @@ fa8ca28084ec18a50c4f31e673fbe161 *src/twin_qp.cpp
 d33cdc2261e032af66db057d9ae990ae *tests/testthat.R
 790c7abc588324aca83389aec7737d1f *tests/testthat/ref-binary-svms.rds
 e93772b30f28704b0c6fabcb44917ab3 *tests/testthat/ref-binary-tsvm.rds
-eddd253935f15657e3bbb8e475e35b7f *tests/testthat/test-baselines.R
-3d6e03ad05d30f9d7d4dca3f1bfa8820 *tests/testthat/test-multiclass.R
-f27afcf04b0998101125fb663c849c3c *tests/testthat/test-phase0.R
+5e6f3507d601a1bc8ac878d12151addf *tests/testthat/test-baselines.R
+723354684ae50031fe283ac74792032f *tests/testthat/test-multiclass.R
+84debb7387467b20605dec01a66d8f89 *tests/testthat/test-phase0.R
+37255207f8d329e35252171cfd1275c8 *tests/testthat/test-resample.R
 cb82aa1adf758034a29f4b11d7b05e38 *tests/testthat/test-visualizations.R
 f56cd0a1dfeddafc5b16d450e359ba25 *vignettes/twinsvm.Rmd
